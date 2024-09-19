@@ -25,6 +25,7 @@ class Board:
 
     def printBoard(self):
         for y in range(8):
+            line = ""
             for x in range(8):
-                print(self.ChessBoard[x][7-y].type)
-            print("\n")
+                line = line + self.ChessBoard[7-y][x].type + " "
+            print(line)
