@@ -7,7 +7,7 @@ WhitePlayer = Player("w")
 BlackPlayer = Player("b")
 gameBoard = Board()
 
-gameBoard.printBoard()
+print(gameBoard.ChessBoard[1][2].getPos(gameBoard.ChessBoard))
 """
 while(winner != ""):
     Board.updatePosition(WhitePlayer.playerMove())

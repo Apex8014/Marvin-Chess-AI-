@@ -13,9 +13,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2mIsZ4HYhViPUoemMJ4XRBrgJqs" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,13 +24,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.Board.executor": "Run",
+    "Python.Game.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/evanokeefe/Desktop/Python/Marvin-Chess-AI-/Marvin(Chess AI)"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="Board" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="Game" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Marvin(Chess AI)" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -44,7 +45,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Board.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Game.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
