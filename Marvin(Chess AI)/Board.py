@@ -1,10 +1,10 @@
-import EmptySpace
-import Pawn
-import Knight
-import Bishop
-import Rook
-import Queen
-import King
+from EmptySpace import EmptySpace
+from Pawn import Pawn
+from Knight import Knight
+from Bishop import Bishop
+from Rook import Rook
+from Queen import Queen
+from King import King
 
 class Board:
     def __init__(self):
@@ -22,3 +22,9 @@ class Board:
         pieceToBeMoved = self.ChessBoard[Positions[0,0],Positions[0,1]]
         self.ChessBoard[Positions[0,0],Positions[0,1]] = EmptySpace()
         self.ChessBoard[Positions[1,0],Positions[1,1]] = pieceToBeMoved
+
+    def printBoard(self):
+        for y in range(8):
+            for x in range(8):
+                print(self.ChessBoard[x][7-y].type)
+            print("\n")
