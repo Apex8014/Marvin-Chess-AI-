@@ -6,6 +6,6 @@ class Piece:
     def getPos(self, board):
         for x in range(8):
             for y in range(8):
-                if board[x][y] is self:
+                if board[y][x] is self:
                     return (x, y)
         return None
