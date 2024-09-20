@@ -1,4 +1,3 @@
-from EmptySpace import EmptySpace
 from Piece import Piece
 
 class Pawn(Piece):
@@ -17,16 +16,16 @@ class Pawn(Piece):
             if board[pos[0]][pos[1] + 1].type == "_":
                 moves.append((pos[0], pos[1] + 1))
             #Logic for a pawn at its starting location
-            if pos[1] == 2:
+            if pos[1] == 1:
                 print(board[pos[0]][pos[1]+2].type)
                 if board[pos[0]][pos[1]+2].type == "_":
                     moves.append((pos[0], pos[1]+2))
 
             """#Check if there is a piece to the left or right diagonally
-            if pos[0] + 1 < len(board) and board[pos[0] + 1][pos[1] + 1].type != "_" and board[pos[0] + 1][
+            if pos[0] + 1 < len(board) and board[pos[0] + 1][pos[1] + 1].type == (not "_") and board[pos[0] + 1][
                 pos[1] + 1].color != self.color:
                 moves.append((pos[0] + 1, pos[1] + 1))
-            if pos[0] - 1 >= 0 and board[pos[0] - 1][pos[1] + 1].type != "_" and board[pos[0] - 1][
+            if pos[0] - 1 >= 0 and board[pos[0] - 1][pos[1] + 1].type == (not "_") and board[pos[0] - 1][
                 pos[1] + 1].color != self.color:
                 moves.append((pos[0] - 1, pos[1] + 1))"""
 
@@ -46,11 +45,11 @@ class Pawn(Piece):
                     moves.append((pos[0], pos[1] - 2))
 
             """# Check if there is a piece to the left or right diagonally
-            if pos[0] + 1 < len(board) and board[pos[0] + 1][pos[1] - 1].type != "_" and board[pos[0] + 1][
+            if pos[0] + 1 < len(board) and board[pos[0] + 1][pos[1] - 1].type == (not "_") and board[pos[0] + 1][
                 pos[1] - 1].color != self.color:
                 print(board[pos[0] + 1][pos[0] -1])
                 moves.append((pos[0] + 1, pos[1] - 1))
-            if pos[0] - 1 >= 0 and board[pos[0] - 1][pos[1] - 1].type != "_" and board[pos[0] - 1][
+            if pos[0] - 1 >= 0 and board[pos[0] - 1][pos[1] - 1].type == (not "_") and board[pos[0] - 1][
                 pos[1] - 1].color != self.color:
                 print(board[pos[0] - 1][pos[0] - 1])
                 moves.append((pos[0] - 1, pos[1] - 1))"""

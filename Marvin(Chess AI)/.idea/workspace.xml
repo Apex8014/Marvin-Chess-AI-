@@ -32,12 +32,18 @@
   "keyToString": {
     "Python.Board.executor": "Run",
     "Python.Game.executor": "Run",
+    "Python.Pawn.executor": "Run",
     "Python.Test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/evanokeefe/Desktop/Python/Marvin-Chess-AI-/Marvin(Chess AI)"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.Test">
     <configuration name="Game" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Marvin(Chess AI)" />
