@@ -5,8 +5,8 @@ class Player:
 
 	#gets imput from the player to make their move
 	def playerMove(self):
-		self.chosenPieceX = input("What is the x position of the piece you would like to move?")
-		self.chosenPieceY = input("What is the y position of the piece you would like to move?")
-		self.chosenLocationX = input("Where would you like to move the piece to? (x position):")
-		self.chosenLocationY = input("Where would you like to move the piece to? (y position):")
-		return ((self.chosenPieceX,self.chosenPieceY),(self.chosenLocationX,self.chosenLocationY))
+		self.chosenPieceX = int(input("What is the x position of the piece you would like to move?(1 - 8):"))
+		self.chosenPieceY = int(input("What is the y position of the piece you would like to move?(1 - 8):"))
+		self.chosenLocationX = int(input("Where would you like to move the piece to? (x position, 1 - 8):"))
+		self.chosenLocationY = int(input("Where would you like to move the piece to? (y position, 1 - 8):):"))
+		return ((self.chosenPieceX-1,self.chosenPieceY-1),(self.chosenLocationX-1,self.chosenLocationY-1))

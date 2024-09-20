@@ -19,9 +19,10 @@ class Board:
                            [Rook("Black"),Knight("Black"),Bishop("Black"),Queen("Black"),King("Black"),Bishop("Black"),Knight("Black"),Rook("Black")]]
 
     def updatePosition(self,Positions):
-        pieceToBeMoved = self.ChessBoard[Positions[0,0],Positions[0,1]]
-        self.ChessBoard[Positions[0,0],Positions[0,1]] = EmptySpace()
-        self.ChessBoard[Positions[1,0],Positions[1,1]] = pieceToBeMoved
+        pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
+        self.ChessBoard[Positions[0][1]][Positions[0][0]] = EmptySpace()
+        self.ChessBoard[Positions[1][1]][Positions[1][0]] = pieceToBeMoved
+        self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
 
     def printBoard(self):
         for y in range(8):

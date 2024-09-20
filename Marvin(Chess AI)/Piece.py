@@ -2,6 +2,7 @@ class Piece:
     def __init__(self,color):
         self.color = color
         self.type = "Piece"
+        self.hasMoved = False
 
     def getPos(self, board):
         for x in range(8):
