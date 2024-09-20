@@ -22,6 +22,7 @@ class Board:
         pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
         self.ChessBoard[Positions[0][1]][Positions[0][0]] = EmptySpace()
         self.ChessBoard[Positions[1][1]][Positions[1][0]] = pieceToBeMoved
+        self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
 
     def printBoard(self):
         for y in range(8):
