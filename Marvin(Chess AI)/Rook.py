@@ -40,27 +40,27 @@ class Rook(Piece):
 
         for y in range(8):
             #checks all possible rightward moves
-            if (x == 0):
+            if (y == 0):
                 continue
-            if (x+pos[0] < 7):
-                if (board[pos[1]][pos[0]+x].color == self.color):
+            if (y+pos[1] < 7):
+                if (board[pos[1]+y][pos[0]].color == self.color):
                     break
                 else: 
-                    self.movesList[len(self.movesList)] = (pos[0]+x,pos[1])
+                    self.movesList[len(self.movesList)] = (pos[0],pos[1]+y)
                     #allows the loop to keep going if there is an empty space, but ends it if taking a piece is the las possible option
-                    if (board[pos[1]][pos[0]+x].color != "None"):
+                    if (board[pos[1]+y][pos[0]].color != "None"):
                         break
             else:
                 break
 
             #checks all possible leftward moves
-            if (pos[0]-x < 7):
-                if (board[pos[1]][pos[0]-x].color == self.color):
+            if (pos[1]-y < 7):
+                if (board[pos[1]-y][pos[0]].color == self.color):
                     break
                 else: 
-                    self.movesList[len(self.movesList)] = (pos[0]-x,pos[1])
+                    self.movesList[len(self.movesList)] = (pos[0],pos[1]-y)
                     #allows the loop to keep going if there is an empty space, but ends it if taking a piece is the las possible option
-                    if (board[pos[1]][pos[0]-x].color != "None"):
+                    if (board[pos[1]-y][pos[0]].color != "None"):
                         break
             else:
                 break
