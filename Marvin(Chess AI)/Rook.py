@@ -35,9 +35,6 @@ class Rook(Piece):
             else:
                 break
 
-
-        #!#!#!INCOMPLETE!#!#!#
-
         for y in range(8):
             #checks all possible rightward moves
             if (y == 0):
@@ -64,3 +61,4 @@ class Rook(Piece):
                         break
             else:
                 break
+        return self.movesList
