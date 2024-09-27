@@ -26,13 +26,17 @@ class Board:
         self.ChessBoard[Positions[1][1]][Positions[1][0]] = pieceToBeMoved
         #Special Moves
         if (len(Positions[1]) == 3):
-            if (Positions[1][2] == True):
+            #Pawn
+            if (self.ChessBoard[Positions[1][1]][Positions[1][0]].type == "P"):
                 #Promotion
-                if (self.ChessBoard[Positions[1][1]][Positions[1][0]].type == "P"):
+                if (Positions[1][2] == True):
                     self.promotionPiece = input("What piece would you like to promote to?:").lower()
                     while self.promotionPiece not in ["knight","bishop","rook","queen"]:
                         self.promotionPiece = input("Invalid response; enter full name of piece. What piece would you like to promote to?:").lower()
                     self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.promotions[self.promotionPiece][self.ChessBoard[Positions[1][1]][Positions[1][0]].color]
+                #En pessant
+                if (Positions[1][2] == False):
+                    self.ChessBoard[Positions[1][1]][Positions[1][0]]
         self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
         self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
 
