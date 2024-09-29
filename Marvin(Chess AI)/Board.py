@@ -36,7 +36,7 @@ class Board:
                     self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.promotions[self.promotionPiece][self.ChessBoard[Positions[1][1]][Positions[1][0]].color]
                 #En pessant
                 if (Positions[1][2] == False):
-                    self.ChessBoard[Positions[1][1]][Positions[1][0]]
+                    self.ChessBoard[Positions[1][1]-{"Black":-1,"White":1}[pieceToBeMoved.color]][Positions[1][0]] == EmptySpace()
         self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
         self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
 
