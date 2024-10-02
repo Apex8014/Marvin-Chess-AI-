@@ -21,9 +21,9 @@ class Board:
         self.promotions = {"queen": {"Black": Queen("Black"), "White": Queen("White")},"knight": {"Black": Knight("Black"), "White": Knight("White")},"rook": {"Black": Rook("Black"), "White": Rook("White")},"bishop": {"Black": Bishop("Black"), "White": Bishop("White")}}
 
     def updatePosition(self,Positions):
-        pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
+        self.pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
         self.ChessBoard[Positions[0][1]][Positions[0][0]] = EmptySpace()
-        self.ChessBoard[Positions[1][1]][Positions[1][0]] = pieceToBeMoved
+        self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.pieceToBeMoved
         #Special Moves
         if (len(Positions[1]) == 3):
             #Pawn
@@ -36,7 +36,10 @@ class Board:
                     self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.promotions[self.promotionPiece][self.ChessBoard[Positions[1][1]][Positions[1][0]].color]
                 #En pessant
                 if (Positions[1][2] == False):
-                    self.ChessBoard[Positions[1][1]-{"Black":-1,"White":1}[pieceToBeMoved.color]][Positions[1][0]] == EmptySpace()
+                    self.ChessBoard[Positions[1][1]-{"Black":-1,"White":1}[self.pieceToBeMoved.color]][Positions[1][0]] == EmptySpace()
+            #Castling
+            if (self.ChessBoard[Positions[1][1]][Positions[1][0]].type == "K"):
+                self.updatePosition((({2:0,6:7}[Positions[1][0]],{"White":0,"Black":7}[self.pieceToBeMoved.color]),((Positions[1][0]-4)/2,{"White":0,"Black":7}[self.pieceToBeMoved.color])))
         self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
         self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
 
