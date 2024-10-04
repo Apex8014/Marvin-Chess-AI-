@@ -2,6 +2,7 @@ blackPieces = []
 whitePieces = []
 #white king, black king
 kings = [0,0]
+mostRecentMove = ((4,4),(4,4))
 
 def addBlackPiece(piece):
     blackPieces.append(piece)
@@ -20,3 +21,6 @@ def addKing(piece):
         kings[0] = piece
     else:
         kings[1] = piece
+
+def updateMostRecentMove(positions):
+    mostRecentMove = positions

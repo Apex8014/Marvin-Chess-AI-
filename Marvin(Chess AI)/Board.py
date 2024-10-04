@@ -5,6 +5,7 @@ from Bishop import Bishop
 from Rook import Rook
 from Queen import Queen
 from King import King
+import Global
 
 class Board:
     def __init__(self):
@@ -24,6 +25,7 @@ class Board:
         self.pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
         self.ChessBoard[Positions[0][1]][Positions[0][0]] = EmptySpace()
         self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.pieceToBeMoved
+        Global.updateMostRecentMove(Positions)
         #Special Moves
         if (len(Positions[1]) == 3):
             #Pawn

@@ -1,4 +1,5 @@
 from Piece import Piece
+import Global
 
 class Pawn(Piece):
     def __init__(self,color):
@@ -6,53 +7,30 @@ class Pawn(Piece):
         self.type = "P"
 
     def validMoves(self, board):
-        #Get the position of this pawn
         pos = self.getPos(board)
-
-        moves = []
-        #Check if we are white or black
-        if self.color == "White":
-            #Check if space in front of pawn is open
-            if board[pos[0]][pos[1] + 1].type == "_":
-                moves.append((pos[0], pos[1] + 1))
-            #Logic for a pawn at its starting location
-            if pos[1] == 1:
-                print(board[pos[0]][pos[1]+2].type)
-                if board[pos[0]][pos[1]+2].type == "_":
-                    moves.append((pos[0], pos[1]+2))
-
-            """#Check if there is a piece to the left or right diagonally
-            if pos[0] + 1 < len(board) and board[pos[0] + 1][pos[1] + 1].type == (not "_") and board[pos[0] + 1][
-                pos[1] + 1].color != self.color:
-                moves.append((pos[0] + 1, pos[1] + 1))
-            if pos[0] - 1 >= 0 and board[pos[0] - 1][pos[1] + 1].type == (not "_") and board[pos[0] - 1][
-                pos[1] + 1].color != self.color:
-                moves.append((pos[0] - 1, pos[1] + 1))"""
-
-        #If this gets through we are black
-        else:
-            #Yeah, were black
-            #Now I just copy and paste all the code from white and change a few values :)
-            #Equality ✊🏻
-
-            # Check if space in front of pawn is open
-            if board[pos[0]][pos[1] - 1].type == "_":
-                moves.append((pos[0], pos[1] - 1))
-            # Logic for a pawn at its starting location
-            if pos[1] == 6:
-                print(board[pos[0]][pos[1] - 2].type)
-                if board[pos[0]][pos[1] - 2].type == "_":
-                    moves.append((pos[0], pos[1] - 2))
-
-            """# Check if there is a piece to the left or right diagonally
-            if pos[0] + 1 < len(board) and board[pos[0] + 1][pos[1] - 1].type == (not "_") and board[pos[0] + 1][
-                pos[1] - 1].color != self.color:
-                print(board[pos[0] + 1][pos[0] -1])
-                moves.append((pos[0] + 1, pos[1] - 1))
-            if pos[0] - 1 >= 0 and board[pos[0] - 1][pos[1] - 1].type == (not "_") and board[pos[0] - 1][
-                pos[1] - 1].color != self.color:
-                print(board[pos[0] - 1][pos[0] - 1])
-                moves.append((pos[0] - 1, pos[1] - 1))"""
-
-
-        return moves
+        self.movesList = []
+        #Makes sure to not go out of bounds
+        if 8 > pos[1]+{"White":1, "Black":-1}[self.color] > -1:
+            #Basic move one movement
+            if board[pos[1] + {"White":1, "Black":-1}[self.color]][pos[0]].color == " ":
+                self.movesList.append((pos[0],pos[1]+{"White":1,"Black":-1}[self.color]))
+                #Two movement from start
+                if pos[1] == {"White":1, "Black":6}[self.color]:
+                    if board[pos[1] + {"White":2, "Black":-2}[self.color]][pos[0]].color == " ":
+                        self.movesList.append((pos[0],pos[1]+{"White":2,"Black":-2}[self.color]))
+        #Capturing
+        for i in range(-1,2,2):
+            if 8 > pos[0]+i > -1:
+                if 8 > pos[1]+{"White":1, "Black":-1}[self.color] > -1:
+                    if board[pos[1] + {"White":1, "Black":-1}[self.color]][pos[0] + i].color == {"White": "Black", "Black": "White"}[self.color]:
+                        self.movesList.append((pos[0]+i, pos[1]+{"White":1,"Black":-1}[self.color]))
+        #En pessant
+        if pos[1] == {"White":4,"Black":3}[self.color]:
+            if board[Global.mostRecentMove[1][1]][Global.mostRecentMove[1][0]].type == "P":
+                if Global.mostRecentMove[1][1] == pos[1]:
+                    if Global.mostRecentMove[1][0] == pos[0]+1:
+                        self.movesList.append((pos[0]+1,{"White":5,"Black":2}[self.color]))
+                    elif Global.mostRecentMove[1][0] == pos[0]-1:
+                        self.movesList.append((pos[0]+1,{"White":5,"Black":2}[self.color]))
+        
+        return self.movesList
