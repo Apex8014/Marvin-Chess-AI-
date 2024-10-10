@@ -33,4 +33,8 @@ class Pawn(Piece):
                     elif Global.mostRecentMove[1][0] == pos[0]-1:
                         self.movesList.append((pos[0]+1,{"White":5,"Black":2}[self.color]))
         
+        #Promotion
+        for i in range(len(self.movesList)):
+            if self.movesList[i][1] == {"White":7,"Black":0}[self.color]:
+                self.movesList[i] = self.movesList[i][0],self.movesList[i][1],True
         return self.movesList
