@@ -26,6 +26,9 @@ class Bishop(Piece):
                 noPiece = False
             if board[testY][testX].type == "_":
                 moves.append((testX, testY))
+            elif board[testY][testX].type != "":
+                moves.append((testX, testY))
+                noPiece = False
             else:
                 noPiece = False
 
@@ -43,6 +46,9 @@ class Bishop(Piece):
                 noPiece = False
             if board[testY][testX].type == "_":
                 moves.append((testX, testY))
+            elif board[testY][testX].type != "":
+                moves.append((testX, testY))
+                noPiece = False
             else:
                 noPiece = False
 
@@ -60,6 +66,9 @@ class Bishop(Piece):
                 noPiece = False
             if board[testY][testX].type == "_":
                 moves.append((testX, testY))
+            elif board[testY][testX].type != "":
+                moves.append((testX, testY))
+                noPiece = False
             else:
                 noPiece = False
 
@@ -77,6 +86,9 @@ class Bishop(Piece):
                 noPiece = False
             if board[testY][testX].type == "_":
                 moves.append((testX, testY))
+            elif board[testY][testX].type != "":
+                moves.append((testX, testY))
+                noPiece = False
             else:
                 noPiece = False
 

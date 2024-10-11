@@ -28,17 +28,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Board.executor": "Run",
-    "Python.Game.executor": "Run",
-    "Python.Pawn.executor": "Run",
-    "Python.Test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/evanokeefe/Desktop/Python/Marvin-Chess-AI-/Marvin(Chess AI)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Board.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Pawn.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/evanokeefe/Desktop/Python/Marvin-Chess-AI-/Marvin(Chess AI)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
