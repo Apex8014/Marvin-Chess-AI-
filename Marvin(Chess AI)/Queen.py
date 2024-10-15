@@ -12,52 +12,62 @@ class Queen(Piece):
             #checks all possible rightward moves
             if (x == 0):
                 continue
-            if (x+pos[0] < 7):
+            if (x+pos[0] < 8):
                 if (board[pos[1]][pos[0]+x].color == self.color):
                     break
                 else: 
-                    self.movesList[len(self.movesList)] = (pos[0]+x,pos[1])
+                    self.movesList.append((pos[0]+x,pos[1]))
                     #allows the loop to keep going if there is an empty space, but ends it if taking a piece is the las possible option
-                    if (board[pos[1]][pos[0]+x].color != "None"):
+                    if (board[pos[1]][pos[0]+x].color != " "):
                         break
             else:
                 break
-
+        
+        
+        for x in range(8):
             #checks all possible leftward moves
-            if (pos[0]-x < 7):
+            if (x == 0):
+                continue
+            if (pos[0]-x > -1):
                 if (board[pos[1]][pos[0]-x].color == self.color):
+                    #print(pos[0]-x)
                     break
                 else: 
-                    self.movesList[len(self.movesList)] = (pos[0]-x,pos[1])
+                    self.movesList.append((pos[0]-x,pos[1]))
                     #allows the loop to keep going if there is an empty space, but ends it if taking a piece is the las possible option
-                    if (board[pos[1]][pos[0]-x].color != "None"):
+                    if (board[pos[1]][pos[0]-x].color != " "):
                         break
             else:
                 break
-
+        
+        
         for y in range(8):
-            #checks all possible rightward moves
+            #checks all possible upward moves
             if (y == 0):
                 continue
-            if (y+pos[1] < 7):
+            if (y+pos[1] < 8):
                 if (board[pos[1]+y][pos[0]].color == self.color):
                     break
                 else: 
-                    self.movesList[len(self.movesList)] = (pos[0],pos[1]+y)
+                    self.movesList.append((pos[0],pos[1]+y))
                     #allows the loop to keep going if there is an empty space, but ends it if taking a piece is the las possible option
-                    if (board[pos[1]+y][pos[0]].color != "None"):
+                    if (board[pos[1]+y][pos[0]].color != " "):
                         break
             else:
                 break
+        
 
-            #checks all possible leftward moves
-            if (pos[1]-y < 7):
+        for y in range(8):
+            #checks all possible upward moves
+            if (y == 0):
+                continue
+            if (pos[1] - y > -1):
                 if (board[pos[1]-y][pos[0]].color == self.color):
                     break
                 else: 
-                    self.movesList[len(self.movesList)] = (pos[0],pos[1]-y)
+                    self.movesList.append((pos[0],pos[1]-y))
                     #allows the loop to keep going if there is an empty space, but ends it if taking a piece is the las possible option
-                    if (board[pos[1]-y][pos[0]].color != "None"):
+                    if (board[pos[1]-y][pos[0]].color != " "):
                         break
             else:
                 break
@@ -76,6 +86,9 @@ class Queen(Piece):
                 noPiece = False
             if board[testY][testX].type == "_":
                 self.movesList.append((testX, testY))
+            elif board[testY][testX].type != "":
+                self.movesList.append((testX, testY))
+                noPiece = False
             else:
                 noPiece = False
 
@@ -93,6 +106,9 @@ class Queen(Piece):
                 noPiece = False
             if board[testY][testX].type == "_":
                 self.movesList.append((testX, testY))
+            elif board[testY][testX].type != "":
+                self.movesList.append((testX, testY))
+                noPiece = False
             else:
                 noPiece = False
 
@@ -110,6 +126,9 @@ class Queen(Piece):
                 noPiece = False
             if board[testY][testX].type == "_":
                 self.movesList.append((testX, testY))
+            elif board[testY][testX].type != "":
+                self.movesList.append((testX, testY))
+                noPiece = False
             else:
                 noPiece = False
 
@@ -127,6 +146,9 @@ class Queen(Piece):
                 noPiece = False
             if board[testY][testX].type == "_":
                 self.movesList.append((testX, testY))
+            elif board[testY][testX].type != "":
+                self.movesList.append((testX, testY))
+                noPiece = False
             else:
                 noPiece = False
 

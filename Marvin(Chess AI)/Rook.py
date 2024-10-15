@@ -23,10 +23,14 @@ class Rook(Piece):
             else:
                 break
         
+        
         for x in range(8):
             #checks all possible leftward moves
+            if (x == 0):
+                continue
             if (pos[0]-x > -1):
                 if (board[pos[1]][pos[0]-x].color == self.color):
+                    #print(pos[0]-x)
                     break
                 else: 
                     self.movesList.append((pos[0]-x,pos[1]))
@@ -35,9 +39,10 @@ class Rook(Piece):
                         break
             else:
                 break
-
+        
+        
         for y in range(8):
-            #checks all possible rightward moves
+            #checks all possible upward moves
             if (y == 0):
                 continue
             if (y+pos[1] < 8):
@@ -50,10 +55,13 @@ class Rook(Piece):
                         break
             else:
                 break
+        
 
         for y in range(8):
-            #checks all possible leftward moves
-            if (pos[1]-y > -1):
+            #checks all possible upward moves
+            if (y == 0):
+                continue
+            if (pos[1] - y > -1):
                 if (board[pos[1]-y][pos[0]].color == self.color):
                     break
                 else: 
