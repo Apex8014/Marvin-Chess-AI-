@@ -38,10 +38,11 @@ class Board:
                     self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.promotions[self.promotionPiece][self.ChessBoard[Positions[1][1]][Positions[1][0]].color]
                 #En pessant
                 if (Positions[1][2] == False):
-                    self.ChessBoard[Positions[1][1]-{"Black":-1,"White":1}[self.pieceToBeMoved.color]][Positions[1][0]] == EmptySpace()
+                    print("Deleting Piece")
+                    self.ChessBoard[Positions[0][1]][Positions[1][0]] = EmptySpace()
             #Castling
             if (self.ChessBoard[Positions[1][1]][Positions[1][0]].type == "K"):
-                self.updatePosition((({2:0,6:7}[Positions[1][0]],{"White":0,"Black":7}[self.pieceToBeMoved.color]),((Positions[1][0]-4)/2,{"White":0,"Black":7}[self.pieceToBeMoved.color])))
+                self.updatePosition( ( ( {6:7,2:0}[Positions[1][0]] , Positions[1][1] ), ( {6:5,2:3}[Positions[1][0]] , Positions[1][1]) ) )
         self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
         self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
 
@@ -50,5 +51,5 @@ class Board:
         for y in range(8):
             line = ""
             for x in range(8):
-                line = line + self.ChessBoard[7-y][x].type + " "
+                line = line + {"White":"W","Black":"B", " ":"_"}[self.ChessBoard[7-y][x].color] + self.ChessBoard[7-y][x].type + " "
             print(line)

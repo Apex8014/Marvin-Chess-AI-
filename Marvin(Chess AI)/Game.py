@@ -3,8 +3,8 @@ from Player import Player
 
 
 winner = ""
-WhitePlayer = Player("w")
-BlackPlayer = Player("b")
+WhitePlayer = Player("White")
+BlackPlayer = Player("Black")
 gameBoard = Board()
 print("Black")
 print(gameBoard.ChessBoard[1][2].getPos(gameBoard.ChessBoard))
@@ -23,6 +23,7 @@ while(winner == ""):
                 winner = "!"
     if winner != "!":
         winner = "White"
+        print("White Wins!")
     else:
         winner = ""
     print("Black to move:")
@@ -37,5 +38,6 @@ while(winner == ""):
                 winner = "!"
     if winner != "!":
         winner = "Black"
+        print("Black Wins!")
     else:
         winner = ""
