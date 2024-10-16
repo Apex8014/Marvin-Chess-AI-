@@ -28,13 +28,16 @@ class Pawn(Piece):
         if pos[1] == {"White":4,"Black":3}[self.color]:
             if board[Global.mostRecentMove[1][1]][Global.mostRecentMove[1][0]].type == "P":
                 if Global.mostRecentMove[1][1] == pos[1]:
-                    if Global.mostRecentMove[1][0] == pos[0]+1:
-                        self.movesList.append((pos[0]+1,{"White":5,"Black":2}[self.color]))
-                    elif Global.mostRecentMove[1][0] == pos[0]-1:
-                        self.movesList.append((pos[0]+1,{"White":5,"Black":2}[self.color]))
+                    if abs(Global.mostRecentMove[1][1]-Global.mostRecentMove[0][1]) == 2:
+                        if Global.mostRecentMove[1][0] == pos[0]+1:
+                            self.movesList.append((pos[0]+1,{"White":5,"Black":2}[self.color],False))
+                        elif Global.mostRecentMove[1][0] == pos[0]-1:
+                            self.movesList.append((pos[0]-1,{"White":5,"Black":2}[self.color],False))
         
         #Promotion
         for i in range(len(self.movesList)):
             if self.movesList[i][1] == {"White":7,"Black":0}[self.color]:
-                self.movesList[i] = self.movesList[i][0],self.movesList[i][1],True
+                print("Promotion available:")
+                print(self.movesList[i])
+                self.movesList[i] = (self.movesList[i][0],self.movesList[i][1],True)
         return self.movesList
