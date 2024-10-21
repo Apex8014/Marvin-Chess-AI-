@@ -1,95 +1,59 @@
 from Piece import Piece
 
-class Bishop(Piece):
+class Rook(Piece):
     def __init__(self,color):
         super().__init__(color)
         self.type = "B"
 
-
     def validMoves(self, board):
-        # Get the position of this piece
         pos = self.getPos(board)
+        self.movesList= []
+        self.upRight = True
+        self.downRight = True
+        self.upLeft = True
+        self.downLeft = True
+        for x in range(8):
+            for y in range(8):
+                #up-right
+                if 8 > pos[0] + x > -1 and 8 > pos[0] + y > -1 and self.upRight:
+                    if board[pos[1]+y][pos[0]+x] != self.color:
+                        self.movesList.append((pos[0]+x,pos[1]+y))
+                        if board[pos[1]+y][pos[0]+x] != " ":
+                            self.upRight = False
+                    else:
+                        self.upRight = False
+                else:
+                    self.upRight = False
 
-        moves = []
+                #down-right
+                if 8 > pos[0] + x > -1 and 8 > pos[0] - y > -1 and self.downRight:
+                    if board[pos[1]-y][pos[0]+x] != self.color:
+                        self.movesList.append((pos[0]+x,pos[1]-y))
+                        if board[pos[1]-y][pos[0]+x] != " ":
+                            self.downRight = False
+                    else:
+                        self.downRight = False
+                else:
+                    self.downRight = False
 
-        # Check diagonals up and to the left
-        noPiece = True
+                #down-left
+                if 8 > pos[0] - x > -1 and 8 > pos[0] - y > -1 and self.downLeft:
+                    if board[pos[1]-y][pos[0]-x] != self.color:
+                        self.movesList.append((pos[0]-x,pos[1]-y))
+                        if board[pos[1]-y][pos[0]-x] != " ":
+                            self.downLeft = False
+                    else:
+                        self.downLeft = False
+                else:
+                    self.downLeft = False
 
-        testX, testY = pos[0], pos[1]
-
-        while noPiece:
-            testX += 1
-            testY += 1
-            if testX == 7 or testY == 7:
-                noPiece = False
-            if testX < 0 or testY < 0:
-                noPiece = False
-            if board[testY][testX].type == "_":
-                moves.append((testX, testY))
-            elif board[testY][testX].type != "":
-                moves.append((testX, testY))
-                noPiece = False
-            else:
-                noPiece = False
-
-        # Check diagonals up and to the right
-        noPiece = True
-
-        testX, testY = pos[0], pos[1]
-
-        while noPiece:
-            testX -= 1
-            testY += 1
-            if testX == 7 or testY == 7:
-                noPiece = False
-            if testX < 0 or testY < 0:
-                noPiece = False
-            if board[testY][testX].type == "_":
-                moves.append((testX, testY))
-            elif board[testY][testX].type != "":
-                moves.append((testX, testY))
-                noPiece = False
-            else:
-                noPiece = False
-
-        # Check diagonals down and to the left
-        noPiece = True
-
-        testX, testY = pos[0], pos[1]
-
-        while noPiece:
-            testX += 1
-            testY -= 1
-            if testX == 7 or testY == 7:
-                noPiece = False
-            if testX < 0 or testY < 0:
-                noPiece = False
-            if board[testY][testX].type == "_":
-                moves.append((testX, testY))
-            elif board[testY][testX].type != "":
-                moves.append((testX, testY))
-                noPiece = False
-            else:
-                noPiece = False
-
-        # Check diagonals down and to the right
-        noPiece = True
-
-        testX, testY = pos[0], pos[1]
-
-        while noPiece:
-            testX -= 1
-            testY -= 1
-            if testX == 7 or testY == 7:
-                noPiece = False
-            if testX < 0 or testY < 0:
-                noPiece = False
-            if board[testY][testX].type == "_":
-                moves.append((testX, testY))
-            elif board[testY][testX].type != "":
-                moves.append((testX, testY))
-                noPiece = False
-            else:
-                noPiece = False
-
-        return moves
+                #up-left
+                if 8 > pos[0] - x > -1 and 8 > pos[0] + y > -1 and self.upLeft:
+                    if board[pos[1]+y][pos[0]-x] != self.color:
+                        self.movesList.append((pos[0]-x,pos[1]+y))
+                        if board[pos[1]+y][pos[0]-x] != " ":
+                            self.upLeft = False
+                    else:
+                        self.upLeft = False
+                else:
+                    self.upLeft = False
