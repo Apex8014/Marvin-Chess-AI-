@@ -1,6 +1,6 @@
 from Piece import Piece
 
-class Rook(Piece):
+class Bishop(Piece):
     def __init__(self,color):
         super().__init__(color)
         self.type = "B"
@@ -12,48 +12,47 @@ class Rook(Piece):
         self.downRight = True
         self.upLeft = True
         self.downLeft = True
-        for x in range(8):
-            for y in range(8):
-                #up-right
-                if 8 > pos[0] + x > -1 and 8 > pos[0] + y > -1 and self.upRight:
-                    if board[pos[1]+y][pos[0]+x] != self.color:
-                        self.movesList.append((pos[0]+x,pos[1]+y))
-                        if board[pos[1]+y][pos[0]+x] != " ":
-                            self.upRight = False
-                    else:
+        for d in range(8):
+            #up-right
+            if 8 > pos[0] + d > -1 and 8 > pos[0] + d > -1 and self.upRight:
+                if board[pos[1]+d][pos[0]+d] != self.color:
+                    self.movesList.append((pos[0]+d,pos[1]+d))
+                    if board[pos[1]+d][pos[0]+d] != " ":
                         self.upRight = False
                 else:
                     self.upRight = False
+            else:
+                self.upRight = False
 
-                #down-right
-                if 8 > pos[0] + x > -1 and 8 > pos[0] - y > -1 and self.downRight:
-                    if board[pos[1]-y][pos[0]+x] != self.color:
-                        self.movesList.append((pos[0]+x,pos[1]-y))
-                        if board[pos[1]-y][pos[0]+x] != " ":
-                            self.downRight = False
-                    else:
+            #down-right
+            if 8 > pos[0] + d > -1 and 8 > pos[0] - d > -1 and self.downRight:
+                if board[pos[1]-d][pos[0]+d] != self.color:
+                    self.movesList.append((pos[0]+d,pos[1]-d))
+                    if board[pos[1]-d][pos[0]+d] != " ":
                         self.downRight = False
                 else:
                     self.downRight = False
+            else:
+                self.downRight = False
 
-                #down-left
-                if 8 > pos[0] - x > -1 and 8 > pos[0] - y > -1 and self.downLeft:
-                    if board[pos[1]-y][pos[0]-x] != self.color:
-                        self.movesList.append((pos[0]-x,pos[1]-y))
-                        if board[pos[1]-y][pos[0]-x] != " ":
-                            self.downLeft = False
-                    else:
+            #down-left
+            if 8 > pos[0] - d > -1 and 8 > pos[0] - d > -1 and self.downLeft:
+                if board[pos[1]-d][pos[0]-d] != self.color:
+                    self.movesList.append((pos[0]-d,pos[1]-d))
+                    if board[pos[1]-d][pos[0]-d] != " ":
                         self.downLeft = False
                 else:
                     self.downLeft = False
+            else:
+                self.downLeft = False
 
-                #up-left
-                if 8 > pos[0] - x > -1 and 8 > pos[0] + y > -1 and self.upLeft:
-                    if board[pos[1]+y][pos[0]-x] != self.color:
-                        self.movesList.append((pos[0]-x,pos[1]+y))
-                        if board[pos[1]+y][pos[0]-x] != " ":
-                            self.upLeft = False
-                    else:
+            #up-left
+            if 8 > pos[0] - d > -1 and 8 > pos[0] + d > -1 and self.upLeft:
+                if board[pos[1]+d][pos[0]-d] != self.color:
+                    self.movesList.append((pos[0]-d,pos[1]+d))
+                    if board[pos[1]+d][pos[0]-d] != " ":
                         self.upLeft = False
                 else:
                     self.upLeft = False
+            else:
+                self.upLeft = False
