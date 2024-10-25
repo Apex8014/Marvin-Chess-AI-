@@ -20,6 +20,12 @@ class Board:
                            [Rook("Black"),Knight("Black"),Bishop("Black"),Queen("Black"),King("Black"),Bishop("Black"),Knight("Black"),Rook("Black")]]
         #A list of blank pieces to make promotion easier and more efficient
         self.promotions = {"queen": {"Black": Queen("Black"), "White": Queen("White")},"knight": {"Black": Knight("Black"), "White": Knight("White")},"rook": {"Black": Rook("Black"), "White": Rook("White")},"bishop": {"Black": Bishop("Black"), "White": Bishop("White")}}
+        for y in range(len(self.ChessBoard)):
+            for x in range(len(self.ChessBoard[y])):
+                if not self.ChessBoard[y][x].type == "K":
+                    self.ChessBoard[y][x].updateAttackedSquares(self.ChessBoard)
+        self.ChessBoard[0][5].updateAttackedSquares(self.ChessBoard)
+        self.ChessBoard[7][5].updateAttackedSquares(self.ChessBoard)
 
     def updatePosition(self,Positions):
         self.pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
@@ -38,7 +44,6 @@ class Board:
                     self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.promotions[self.promotionPiece][self.ChessBoard[Positions[1][1]][Positions[1][0]].color]
                 #En pessant
                 if (Positions[1][2] == False):
-                    print("Deleting Piece")
                     self.ChessBoard[Positions[0][1]][Positions[1][0]] = EmptySpace()
             #Castling
             if (self.ChessBoard[Positions[1][1]][Positions[1][0]].type == "K"):

@@ -7,7 +7,7 @@ class Bishop(Piece):
 
     def validMoves(self, board):
         pos = self.getPos(board)
-        self.movesList= []
+        self.movesList= [4,4]
         self.upRight = True
         self.downRight = True
         self.upLeft = True
@@ -56,3 +56,5 @@ class Bishop(Piece):
                     self.upLeft = False
             else:
                 self.upLeft = False
+
+        return self.movesList
