@@ -9,32 +9,38 @@ class King(Piece):
         pos = self.getPos(board)
         self.movesList = []
         #Basic movement
-        for y in range(-1,1,1):
-            for x in range(-1,1,1):
-                if (x == 0 and y == 0 and board.ChessBoard[pos[1]+y][pos[0]+x].type != self.type):
-                    self.movesList[len(self.movesList)] = (pos[1]+y,pos[0]+x)
+        for y in range(-1,2,1):
+            for x in range(-1,2,1):
+                if 8 > pos[1]+y > -1 and 8 > pos[0]+x > -1:
+                    if not (x==0 and y == 0) and board[pos[1]+y][pos[0]+x].color != self.color:
+                        self.movesList.append((pos[0]+x,pos[1]+y))
         #Checks for invalid moves and removes them from moves list
         self.getAttackedSquares()
-        for i in range(len(self.movesList)):
-            if (self.movesList[i] in self.squaresUnderAttack):
+        self.checkToItem = len(self.movesList)
+        i = 0
+        while i < self.checkToItem:
+            if self.movesList[i] in self.squaresUnderAttack:
                 self.movesList.pop(i)
-                i-=1
+                self.checkToItem -= 1
+            else:
+                i += 1
         #castling
         #Checks if the king meets the requirements
-        if (not self.inCheck and not self.hasMoved):
+        if (not self.inCheck(board) and not self.hasMoved):
             #Kingside
             #Checks if the rook meets the requirements
-            if (board[0][7].type == "R" and board[0][7].color == self.color and not board[0][7].hasMoved):
+            if (board[pos[1]][7].type == "R" and board[pos[1]][7].color == self.color and not board[pos[1]][7].hasMoved):
                 #Checks if the other spaces are free
-                if (board[0][6].type == "_" and board[0][5].type == "_" and not (6,0) in self.squaresUnderAttack and not (5,0) in self.squaresUnderAttack):
+                if (board[pos[1]][6].type == "_" and board[pos[1]][5].type == "_" and not (6,pos[1]) in self.squaresUnderAttack and not (5,pos[1]) in self.squaresUnderAttack):
                     #The true is here to show that a special move (castling in this case) is ocuring in this move
-                    self.movesList.append((0,6,True))
+                    self.movesList.append((6,pos[1],True))
             #Queenside
-            if (board[0][0].type == "R" and board[0][0].color == self.color and not board[0][0].hasMoved):
+            if (board[pos[1]][0].type == "R" and board[pos[1]][0].color == self.color and not board[pos[1]][0].hasMoved):
                 #Checks if the other spaces are free
-                if (board[0][3].type == "_" and board[0][2].type == "_" and not (3,0) in self.squaresUnderAttack and not (2,0) in self.squaresUnderAttack):
+                if (board[pos[1]][3].type == "_" and board[pos[1]][2].type == "_" and not (3,pos[1]) in self.squaresUnderAttack and not (2,pos[1]) in self.squaresUnderAttack):
                     #The true is here to show that a special move (castling in this case) is ocuring in this move
-                    self.movesList.append((0,2,True))
+                    self.movesList.append((2,pos[1],True))
+
         return self.movesList
 
 
