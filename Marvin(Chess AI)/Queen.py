@@ -2,8 +2,8 @@ from Piece import Piece
 
 class Queen(Piece):
     def __init__(self,color):
-        super().__init__(color)
         self.type = "Q"
+        super().__init__(color)
     
     def validMoves(self, board):
         pos = self.getPos(board)

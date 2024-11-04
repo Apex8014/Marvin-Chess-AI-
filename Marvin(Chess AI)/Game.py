@@ -24,6 +24,7 @@ while(winner == ""):
     if winner != "!":
         winner = "White"
         print("White Wins!")
+        break
     else:
         winner = ""
     print("Black to move:")
@@ -39,5 +40,6 @@ while(winner == ""):
     if winner != "!":
         winner = "Black"
         print("Black Wins!")
+        break
     else:
         winner = ""

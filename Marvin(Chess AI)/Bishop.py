@@ -2,8 +2,8 @@ from Piece import Piece
 
 class Bishop(Piece):
     def __init__(self,color):
-        super().__init__(color)
         self.type = "B"
+        super().__init__(color)
 
     def validMoves(self, board):
         pos = self.getPos(board)

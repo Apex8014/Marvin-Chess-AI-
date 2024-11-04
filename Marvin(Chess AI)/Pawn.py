@@ -3,8 +3,8 @@ import Global
 
 class Pawn(Piece):
     def __init__(self,color):
-        super().__init__(color)
         self.type = "P"
+        super().__init__(color)
 
     def validMoves(self, board):
         pos = self.getPos(board)

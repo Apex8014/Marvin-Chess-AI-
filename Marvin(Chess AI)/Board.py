@@ -20,15 +20,23 @@ class Board:
                            [Rook("Black"),Knight("Black"),Bishop("Black"),Queen("Black"),King("Black"),Bishop("Black"),Knight("Black"),Rook("Black")]]
         #A list of blank pieces to make promotion easier and more efficient
         self.promotions = {"queen": {"Black": Queen("Black"), "White": Queen("White")},"knight": {"Black": Knight("Black"), "White": Knight("White")},"rook": {"Black": Rook("Black"), "White": Rook("White")},"bishop": {"Black": Bishop("Black"), "White": Bishop("White")}}
+        #Removes the extra 8 pieces added from the previous line from the white and black pieces list
+        for i in range(4):
+            Global.removeBlackPiece(len(Global.blackPieces)-1)
+            Global.removeWhitePiece(len(Global.whitePieces)-1)
+        #Gets all attacked squares for the start of the game
         for y in range(len(self.ChessBoard)):
             for x in range(len(self.ChessBoard[y])):
                 if not self.ChessBoard[y][x].type == "K":
                     self.ChessBoard[y][x].updateAttackedSquares(self.ChessBoard)
-        self.ChessBoard[0][5].updateAttackedSquares(self.ChessBoard)
-        self.ChessBoard[7][5].updateAttackedSquares(self.ChessBoard)
+        for i in range(2):
+            Global.kings[i].updateAttackedSquares(self.ChessBoard)
 
     def updatePosition(self,Positions):
         self.pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
+        if self.pieceToBeMoved.type == "K":
+            self.pieceToBeMoved.getAttackedSquares()
+        self.ChessBoard[Positions[0][1]][Positions[0][0]].removeFromPieces()
         self.ChessBoard[Positions[0][1]][Positions[0][0]] = EmptySpace()
         self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.pieceToBeMoved
         Global.updateMostRecentMove(Positions)
