@@ -17,9 +17,9 @@ class Bishop(Piece):
                 continue
             #up-right
             if 8 > pos[0] + d > -1 and 8 > pos[1] + d > -1 and self.upRight:
-                if board[pos[1]+d][pos[0]+d] != self.color:
+                if board[pos[1]+d][pos[0]+d].color != self.color:
                     self.movesList.append((pos[0]+d,pos[1]+d))
-                    if board[pos[1]+d][pos[0]+d] != " ":
+                    if board[pos[1]+d][pos[0]+d].color != " ":
                         self.upRight = False
                 else:
                     self.upRight = False
@@ -28,9 +28,9 @@ class Bishop(Piece):
 
             #down-right
             if 8 > pos[0] + d > -1 and 8 > pos[1] - d > -1 and self.downRight:
-                if board[pos[1]-d][pos[0]+d] != self.color:
+                if board[pos[1]-d][pos[0]+d].color != self.color:
                     self.movesList.append((pos[0]+d,pos[1]-d))
-                    if board[pos[1]-d][pos[0]+d] != " ":
+                    if board[pos[1]-d][pos[0]+d].color != " ":
                         self.downRight = False
                 else:
                     self.downRight = False
@@ -39,9 +39,9 @@ class Bishop(Piece):
 
             #down-left
             if 8 > pos[0] - d > -1 and 8 > pos[1] - d > -1 and self.downLeft:
-                if board[pos[1]-d][pos[0]-d] != self.color:
+                if board[pos[1]-d][pos[0]-d].color != self.color:
                     self.movesList.append((pos[0]-d,pos[1]-d))
-                    if board[pos[1]-d][pos[0]-d] != " ":
+                    if board[pos[1]-d][pos[0]-d].color != " ":
                         self.downLeft = False
                 else:
                     self.downLeft = False
@@ -50,9 +50,9 @@ class Bishop(Piece):
 
             #up-left
             if 8 > pos[0] - d > -1 and 8 > pos[1] + d > -1 and self.upLeft:
-                if board[pos[1]+d][pos[0]-d] != self.color:
+                if board[pos[1]+d][pos[0]-d].color != self.color:
                     self.movesList.append((pos[0]-d,pos[1]+d))
-                    if board[pos[1]+d][pos[0]-d] != " ":
+                    if board[pos[1]+d][pos[0]-d].color != " ":
                         self.upLeft = False
                 else:
                     self.upLeft = False
