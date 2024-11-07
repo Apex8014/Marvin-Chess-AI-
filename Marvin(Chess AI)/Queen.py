@@ -77,8 +77,10 @@ class Queen(Piece):
         self.upLeft = True
         self.downLeft = True
         for d in range(8):
+            if d == 0:
+                continue
             #up-right
-            if 8 > pos[0] + d > -1 and 8 > pos[0] + d > -1 and self.upRight:
+            if 8 > pos[0] + d > -1 and 8 > pos[1] + d > -1 and self.upRight:
                 if board[pos[1]+d][pos[0]+d] != self.color:
                     self.movesList.append((pos[0]+d,pos[1]+d))
                     if board[pos[1]+d][pos[0]+d] != " ":
@@ -89,7 +91,7 @@ class Queen(Piece):
                 self.upRight = False
 
             #down-right
-            if 8 > pos[0] + d > -1 and 8 > pos[0] - d > -1 and self.downRight:
+            if 8 > pos[0] + d > -1 and 8 > pos[1] - d > -1 and self.downRight:
                 if board[pos[1]-d][pos[0]+d] != self.color:
                     self.movesList.append((pos[0]+d,pos[1]-d))
                     if board[pos[1]-d][pos[0]+d] != " ":
@@ -100,7 +102,7 @@ class Queen(Piece):
                 self.downRight = False
 
             #down-left
-            if 8 > pos[0] - d > -1 and 8 > pos[0] - d > -1 and self.downLeft:
+            if 8 > pos[0] - d > -1 and 8 > pos[1] - d > -1 and self.downLeft:
                 if board[pos[1]-d][pos[0]-d] != self.color:
                     self.movesList.append((pos[0]-d,pos[1]-d))
                     if board[pos[1]-d][pos[0]-d] != " ":
@@ -111,7 +113,7 @@ class Queen(Piece):
                 self.downLeft = False
 
             #up-left
-            if 8 > pos[0] - d > -1 and 8 > pos[0] + d > -1 and self.upLeft:
+            if 8 > pos[0] - d > -1 and 8 > pos[1] + d > -1 and self.upLeft:
                 if board[pos[1]+d][pos[0]-d] != self.color:
                     self.movesList.append((pos[0]-d,pos[1]+d))
                     if board[pos[1]+d][pos[0]-d] != " ":
