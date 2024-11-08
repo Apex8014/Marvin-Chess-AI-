@@ -36,7 +36,7 @@ class Board:
         self.pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
         if self.pieceToBeMoved.type == "K":
             self.pieceToBeMoved.getAttackedSquares()
-        self.ChessBoard[Positions[0][1]][Positions[0][0]].removeFromPieces()
+        self.ChessBoard[Positions[1][1]][Positions[1][0]].removeFromPieces()
         self.ChessBoard[Positions[0][1]][Positions[0][0]] = EmptySpace()
         self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.pieceToBeMoved
         Global.updateMostRecentMove(Positions)
@@ -56,9 +56,18 @@ class Board:
             #Castling
             if (self.ChessBoard[Positions[1][1]][Positions[1][0]].type == "K"):
                 self.updatePosition( ( ( {6:7,2:0}[Positions[1][0]] , Positions[1][1] ), ( {6:5,2:3}[Positions[1][0]] , Positions[1][1]) ) )
+        if self.ChessBoard[Positions[1][1]][Positions[1][0]].color == "White":
+            for i in Global.whitePieces:
+                if i.pieceID == self.ChessBoard[Positions[1][1]][Positions[1][0]].pieceID:
+                    i.updateAttackedSquares(self.ChessBoard)
+                    i.hasMoved = True
+        elif self.ChessBoard[Positions[1][1]][Positions[1][0]].color == "Black":
+            for i in Global.blackPieces:
+                if i.pieceID == self.ChessBoard[Positions[1][1]][Positions[1][0]].pieceID:
+                    i.updateAttackedSquares(self.ChessBoard)
+                    i.hasMoved = True
         self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
         self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
-
 
     def printBoard(self):
         for y in range(8):

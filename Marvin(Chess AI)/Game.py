@@ -6,9 +6,6 @@ winner = ""
 WhitePlayer = Player("White")
 BlackPlayer = Player("Black")
 gameBoard = Board()
-print("Black")
-print(gameBoard.ChessBoard[1][2].getPos(gameBoard.ChessBoard))
-print("White")
 
 while(winner == ""):
     print("White to move:")

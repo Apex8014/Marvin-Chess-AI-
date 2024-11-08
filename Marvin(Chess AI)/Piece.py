@@ -5,12 +5,13 @@ class Piece:
         self.color = color
         self.hasMoved = False
         self.attackedSquares = []
+        self.pieceID = 0
         if color == "White":
-            Global.addWhitePiece(self)
+            self.pieceID = Global.addWhitePiece(self)
             if self.type == "K":
                 Global.addKing(self)
         if color == "Black":
-            Global.addBlackPiece(self)
+            self.pieceID = Global.addBlackPiece(self)
             if self.type == "K":
                 Global.addKing(self)
 
@@ -38,15 +39,7 @@ class Piece:
         self.attackedSquares = []
         if self.type != "P":
             self.attackedSquares = self.validMoves(board)
-            print("Attacked Squares")
-            print(self.color)
-            print(self.type)
-            print(self.attackedSquares)
         else:
-            print("Attacked Squares")
-            print(self.color)
-            print(self.type)
-            print(self.attackedSquares)
             if 7 > pos[1] > 0:
                 if pos[0]-1 > -1:
                     self.attackedSquares.append((pos[0]-1, pos[1] + {"White":1,"Black":-1}[self.color]))
@@ -63,7 +56,5 @@ class Piece:
         else:
             for i in Global.whitePieces:
                 self.squaresUnderAttack += i.attackedSquares
-            self.squaresUnderAttack += Global.kings[1].attackedSquares
-        print("Squares Under Attack")
-        print(self.squaresUnderAttack)
+            self.squaresUnderAttack += Global.kings[0].attackedSquares
         return self.squaresUnderAttack
