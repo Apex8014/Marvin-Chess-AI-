@@ -17,11 +17,12 @@ class Player:
 				self.chosenPieceY = 0
 				self.chosenLocationX = 0
 				self.chosenLocationY = 0
-			self.moveIsValidBase = (self.chosenLocationX,self.chosenLocationY) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board) or (self.chosenLocationX,self.chosenLocationY,False) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board) or (self.chosenLocationX,self.chosenLocationY,True) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board)
 			if not (-1 < self.chosenPieceX < 8 and -1 < self.chosenPieceY < 8 and -1 < self.chosenLocationX < 8 and -1 < self.chosenLocationY < 8):
 				print("X and/or Y values are out of range, make sure they are between 1 and 8 (inclusive).")
 				continue
-			elif board[self.chosenPieceY][self.chosenPieceX].color != self.playerTurn:
+			else:
+				self.moveIsValidBase = (self.chosenLocationX,self.chosenLocationY) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board) or (self.chosenLocationX,self.chosenLocationY,False) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board) or (self.chosenLocationX,self.chosenLocationY,True) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board)
+			if board[self.chosenPieceY][self.chosenPieceX].color != self.playerTurn:
 				print("Please pick a piece of your color to move.")
 				continue
 			elif (self.chosenLocationX,self.chosenLocationY) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board):
@@ -31,4 +32,4 @@ class Player:
 			elif (self.chosenLocationX,self.chosenLocationY,True) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board):
 				return ((self.chosenPieceX,self.chosenPieceY),(self.chosenLocationX,self.chosenLocationY,True))
 			else:
-				print("Invalid input. Make sure you have the right location for the piece you wan to move and a valid location for where you would like to move the piece.")
+				print("Invalid input. Make sure you have the right location for the piece you want to move and a valid location for where you would like to move the piece.")
