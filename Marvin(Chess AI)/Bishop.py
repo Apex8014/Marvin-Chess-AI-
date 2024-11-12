@@ -8,6 +8,7 @@ class Bishop(Piece):
     def validMoves(self, board):
         pos = self.getPos(board)
         self.movesList= []
+        #variables to help end a section when it reaches the end of its valid moves
         self.upRight = True
         self.downRight = True
         self.upLeft = True

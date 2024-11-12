@@ -35,6 +35,7 @@ class King(Piece):
                     #The true is here to show that a special move (castling in this case) is ocuring in this move
                     self.movesList.append((6,pos[1],True))
             #Queenside
+            #Checks if the rook meets the requirements
             if (board[pos[1]][0].type == "R" and board[pos[1]][0].color == self.color and not board[pos[1]][0].hasMoved):
                 #Checks if the other spaces are free
                 if (board[pos[1]][3].type == "_" and board[pos[1]][2].type == "_" and not (3,pos[1]) in self.squaresUnderAttack and not (2,pos[1]) in self.squaresUnderAttack):
@@ -43,7 +44,7 @@ class King(Piece):
 
         return self.movesList
 
-
+    #detects if the king is in check
     def inCheck(self, board):
         pos = self.getPos(board)
         self.getAttackedSquares()

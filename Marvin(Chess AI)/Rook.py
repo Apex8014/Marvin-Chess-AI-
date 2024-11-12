@@ -7,6 +7,7 @@ class Rook(Piece):
 
     def validMoves(self, board):
         pos = self.getPos(board)
+        #variables to help end a section when it reaches the end of its valid moves
         right = True
         left = True
         up = True

@@ -15,13 +15,15 @@ class Piece:
             if self.type == "K":
                 Global.addKing(self)
 
+    #gets the piece's position from the board
     def getPos(self, board):
         for x in range(8):
             for y in range(8):
-                if board[y][x] is self:
+                if board[y][x].pieceID == self.pieceID:
                     return (x, y)
         return None
     
+    #removes the piece from the global list (used for taking a piece)
     def removeFromPieces(self):
         if self.color == "White":
             for i in range(len(Global.whitePieces)):
@@ -34,6 +36,7 @@ class Piece:
                     Global.removeBlackPiece(i)
                     break
     
+    #updates the squares a piece is attacking
     def updateAttackedSquares(self,board):
         pos = self.getPos(board)
         self.attackedSquares = []
@@ -58,3 +61,15 @@ class Piece:
                 self.squaresUnderAttack += i.attackedSquares
             self.squaresUnderAttack += Global.kings[0].attackedSquares
         return self.squaresUnderAttack
+    
+    #updates attacked squares in the case of a possible discovered attack
+    def discoveredAttack(self, board, updatePosition):
+        if not self.type in ["P","K","N"]:
+            if updatePosition in self.attackedSquares:
+                self.updateAttackedSquares(board)
+
+    #returns a boolean representing wether or not the king is in check
+    def inCheck(self, board):
+        if self.color == " ":
+            return False
+        return Global.kings[{"White":0,"Black":1}[self.color]].getPos(board) in self.getAttackedSquares()
