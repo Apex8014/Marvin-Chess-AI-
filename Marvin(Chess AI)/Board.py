@@ -49,6 +49,12 @@ class Board:
                     while self.promotionPiece not in ["knight","bishop","rook","queen"]:
                         self.promotionPiece = input("Invalid response; enter full name of piece. What piece would you like to promote to?:").lower()
                     self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.promotions[self.promotionPiece][self.ChessBoard[Positions[1][1]][Positions[1][0]].color]
+                    self.ChessBoard[Positions[1][1]][Positions[1][0]].pieceID = self.pieceToBeMoved.pieceID
+                    self.pieceToBeMoved.removeFromPieces()
+                    if self.ChessBoard[Positions[1][1]][Positions[1][0]].color == "White":
+                        Global.addWhitePiece(self.ChessBoard[Positions[1][1]][Positions[1][0]])
+                    elif self.ChessBoard[Positions[1][1]][Positions[1][0]].color == "Black":
+                        Global.addBlackPiece(self.ChessBoard[Positions[1][1]][Positions[1][0]])
                 #En pessant
                 if (Positions[1][2] == False):
                     self.ChessBoard[Positions[0][1]][Positions[1][0]] = EmptySpace()
@@ -71,10 +77,9 @@ class Board:
             i.discoveredAttack(self, Positions[0])
         for i in Global.whitePieces:
             i.discoveredAttack(self, Positions[0])
-            #updating the piece
+        #updating the piece
         self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
         self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
-        #if not self.canEscapeCheckmatecanEscape({"White":"Black","Black":"White"}[self.ChessBoard[Positions[1][1]][Positions[1][0]]],self.ChessBoard):
 
     def printBoard(self):
         for y in range(8):
