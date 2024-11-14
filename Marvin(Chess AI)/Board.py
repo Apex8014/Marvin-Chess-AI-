@@ -35,10 +35,6 @@ class Board:
     def updatePosition(self,Positions):
         print("updated position")
         self.pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
-        """
-        if self.pieceToBeMoved.type == "K":
-            self.pieceToBeMoved.getAttackedSquares()
-        """
         self.ChessBoard[Positions[1][1]][Positions[1][0]].removeFromPieces()
         self.ChessBoard[Positions[0][1]][Positions[0][0]] = EmptySpace()
         self.ChessBoard[Positions[1][1]][Positions[1][0]] = self.pieceToBeMoved
@@ -78,6 +74,7 @@ class Board:
             #updating the piece
         self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
         self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
+        #if not self.canEscapeCheckmatecanEscape({"White":"Black","Black":"White"}[self.ChessBoard[Positions[1][1]][Positions[1][0]]],self.ChessBoard):
 
     def printBoard(self):
         for y in range(8):

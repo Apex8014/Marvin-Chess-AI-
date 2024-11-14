@@ -47,8 +47,6 @@ class Player:
 					i.updateAttackedSquares(board)
 				continue
 			#resets the attacked squares because they are changed when checking for check
-			print("Varibale Test")
-			print(board == self.boardDuplicate.ChessBoard)
 			for i in Global.blackPieces:
 				i.updateAttackedSquares(board)
 			for i in Global.whitePieces:
