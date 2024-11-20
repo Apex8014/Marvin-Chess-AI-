@@ -37,7 +37,5 @@ class Pawn(Piece):
         #Promotion
         for i in range(len(self.movesList)):
             if self.movesList[i][1] == {"White":7,"Black":0}[self.color]:
-                print("Promotion available:")
-                print(self.movesList[i])
                 self.movesList[i] = (self.movesList[i][0],self.movesList[i][1],True)
         return self.movesList

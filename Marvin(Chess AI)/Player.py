@@ -32,13 +32,16 @@ class Player:
 				print("Please pick a piece of your color to move.")
 				continue
 			#Verifies that the move made does not put you in check
-			if (self.chosenLocationX,self.chosenLocationY) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board):
+			if (self.chosenLocationX,self.chosenLocationY) in self.boardDuplicate.ChessBoard[self.chosenPieceY][self.chosenPieceX].validMoves(self.boardDuplicate.ChessBoard):
 				self.boardDuplicate.updatePosition(((self.chosenPieceX,self.chosenPieceY),(self.chosenLocationX,self.chosenLocationY)))
-			elif (self.chosenLocationX,self.chosenLocationY,False) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board):
+			elif (self.chosenLocationX,self.chosenLocationY,False) in self.boardDuplicate.ChessBoard[self.chosenPieceY][self.chosenPieceX].validMoves(self.boardDuplicate.ChessBoard):
 				self.boardDuplicate.updatePosition(((self.chosenPieceX,self.chosenPieceY),(self.chosenLocationX,self.chosenLocationY,False)))
-			elif (self.chosenLocationX,self.chosenLocationY,True) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board):
+			elif (self.chosenLocationX,self.chosenLocationY,True) in self.boardDuplicate.ChessBoard[self.chosenPieceY][self.chosenPieceX].validMoves(self.boardDuplicate.ChessBoard):
 				self.boardDuplicate.updatePosition(((self.chosenPieceX,self.chosenPieceY),(self.chosenLocationX,self.chosenLocationY,True)))
-			if board[self.chosenPieceY][self.chosenPieceX].inCheck(self.boardDuplicate.ChessBoard):
+			else:
+				print("Invalid input. Make sure you have the right location for the piece you want to move and a valid location for where you would like to move the piece.")
+				continue
+			if self.boardDuplicate.ChessBoard[self.chosenLocationY][self.chosenLocationX].inCheck(self.boardDuplicate.ChessBoard):
 				print("Invalid move: Check")
 				#resets the attacked squares because they are changed when checking for check
 				for i in Global.blackPieces:
@@ -53,10 +56,13 @@ class Player:
 				i.updateAttackedSquares(board)
 			#returns the move, if it is valid.
 			if (self.chosenLocationX,self.chosenLocationY) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board):
+				self.moveIsValid = True
 				return ((self.chosenPieceX,self.chosenPieceY),(self.chosenLocationX,self.chosenLocationY))
 			elif (self.chosenLocationX,self.chosenLocationY,False) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board):
+				self.moveIsValid = True
 				return ((self.chosenPieceX,self.chosenPieceY),(self.chosenLocationX,self.chosenLocationY,False))
 			elif (self.chosenLocationX,self.chosenLocationY,True) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board):
+				self.moveIsValid = True
 				return ((self.chosenPieceX,self.chosenPieceY),(self.chosenLocationX,self.chosenLocationY,True))
 			else:
 				print("Invalid input. Make sure you have the right location for the piece you want to move and a valid location for where you would like to move the piece.")
