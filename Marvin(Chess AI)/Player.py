@@ -10,6 +10,7 @@ class Player:
 	def playerMove(self, board, boardClass):
 		self.moveIsValid = False
 		self.boardDuplicate = copy.deepcopy(boardClass)
+		self.boardBackup = copy.deepcopy(board)
 		self.mostRecentMove = Global.mostRecentMove
 		while not self.moveIsValid:
 			try:
@@ -46,16 +47,26 @@ class Player:
 				print("Invalid move: Check")
 				#resets the attacked squares because they are changed when checking for check
 				Global.mostRecentMove = self.mostRecentMove
+				board = self.boardBackup
 				for i in Global.blackPieces:
+					pos = i.getPos(board)
+					i.hasMoved = board[pos[1]][pos[0]].hasMoved
 					i.updateAttackedSquares(board)
 				for i in Global.whitePieces:
+					pos = i.getPos(board)
+					i.hasMoved = board[pos[1]][pos[0]].hasMoved
 					i.updateAttackedSquares(board)
 				continue
 			#resets the attacked squares because they are changed when checking for check
 			Global.mostRecentMove = self.mostRecentMove
+			board = self.boardBackup
 			for i in Global.blackPieces:
+				pos = i.getPos(board)
+				i.hasMoved = board[pos[1]][pos[0]].hasMoved
 				i.updateAttackedSquares(board)
 			for i in Global.whitePieces:
+				pos = i.getPos(board)
+				i.hasMoved = board[pos[1]][pos[0]].hasMoved
 				i.updateAttackedSquares(board)
 			#returns the move, if it is valid.
 			if (self.chosenLocationX,self.chosenLocationY) in board[self.chosenPieceY][self.chosenPieceX].validMoves(board):
