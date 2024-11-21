@@ -73,3 +73,17 @@ class Piece:
         if self.color == " ":
             return False
         return Global.kings[{"White":0,"Black":1}[self.color]].getPos(board) in self.getAttackedSquares()
+    
+    #returns the pieces attacking this piece
+    def attackedByPieces(self, board):
+        pos = self.getPos(board)
+        returnVal = 0
+        if self.color != "White":
+            for i in Global.blackPieces:
+                if pos in i.attackedSquares:
+                    returnVal.append(i)
+        if self.color != "Black":
+            for i in Global.whitePieces:
+                if pos in i.attackedSquares:
+                    returnVal.append(i)
+        return i
