@@ -17,8 +17,8 @@ class Piece:
 
     #gets the piece's position from the board
     def getPos(self, board):
-        for x in range(8):
-            for y in range(8):
+        for y in range(8):
+            for x in range(8):
                 if board[y][x].pieceID == self.pieceID:
                     return (x, y)
         return None
@@ -27,12 +27,12 @@ class Piece:
     def removeFromPieces(self):
         if self.color == "White":
             for i in range(len(Global.whitePieces)):
-                if Global.whitePieces[i] is self:
+                if Global.whitePieces[i].pieceID == self.pieceID:
                     Global.removeWhitePiece(i)
                     break
         elif self.color == "Black":
             for i in range(len(Global.blackPieces)):
-                if Global.blackPieces[i] is self:
+                if Global.blackPieces[i].pieceID == self.pieceID:
                     Global.removeBlackPiece(i)
                     break
     
@@ -64,7 +64,7 @@ class Piece:
     
     #updates attacked squares in the case of a possible discovered attack
     def discoveredAttack(self, board, updatePosition):
-        if not self.type in ["P","K","N"]:
+        #if not self.type in ["P","K","N"]:
             if updatePosition in self.attackedSquares:
                 self.updateAttackedSquares(board)
 

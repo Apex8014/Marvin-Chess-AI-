@@ -11,7 +11,10 @@ class Player:
 		self.moveIsValid = False
 		self.boardDuplicate = copy.deepcopy(boardClass)
 		self.boardBackup = copy.deepcopy(board)
-		self.mostRecentMove = Global.mostRecentMove
+		self.boardDuplicateBackup = copy.deepcopy(boardClass)
+		self.mostRecentMove = copy.deepcopy(Global.mostRecentMove)
+		self.blackPieces = copy.deepcopy(Global.blackPieces)
+		self.whitePieces = copy.deepcopy(Global.whitePieces)
 		while not self.moveIsValid:
 			try:
 				self.chosenPieceX = int(input("What is the x position of the piece you would like to move?(1 - 8):"))-1
@@ -45,9 +48,13 @@ class Player:
 				continue
 			if self.boardDuplicate.ChessBoard[self.chosenLocationY][self.chosenLocationX].inCheck(self.boardDuplicate.ChessBoard):
 				print("Invalid move: Check")
+				self.boardDuplicate.printBoard()
 				#resets the attacked squares because they are changed when checking for check
 				Global.mostRecentMove = self.mostRecentMove
+				Global.whitePieces = self.whitePieces
+				Global.blackPieces = self.blackPieces
 				board = self.boardBackup
+				self.boardDuplicate = self.boardDuplicateBackup
 				for i in Global.blackPieces:
 					pos = i.getPos(board)
 					i.hasMoved = board[pos[1]][pos[0]].hasMoved
@@ -58,7 +65,10 @@ class Player:
 					i.updateAttackedSquares(board)
 				continue
 			#resets the attacked squares because they are changed when checking for check
+			print("Reseting Tests")
 			Global.mostRecentMove = self.mostRecentMove
+			Global.whitePieces = self.whitePieces
+			Global.blackPieces = self.blackPieces
 			board = self.boardBackup
 			for i in Global.blackPieces:
 				pos = i.getPos(board)

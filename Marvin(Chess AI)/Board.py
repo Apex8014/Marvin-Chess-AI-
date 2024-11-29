@@ -80,6 +80,11 @@ class Board:
             i.discoveredAttack(self.ChessBoard, Positions[0])
         for i in Global.whitePieces:
             i.discoveredAttack(self.ChessBoard, Positions[0])
+        #undiscovered attacks
+        for i in Global.blackPieces:
+            i.discoveredAttack(self.ChessBoard, Positions[1])
+        for i in Global.whitePieces:
+            i.discoveredAttack(self.ChessBoard, Positions[1])
         #updating the piece
         self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
         self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
@@ -88,5 +93,16 @@ class Board:
         for y in range(8):
             line = ""
             for x in range(8):
-                line = line + {"White":"W","Black":"B", " ":"_"}[self.ChessBoard[7-y][x].color] + self.ChessBoard[7-y][x].type + " "
+                line += {"White":"W","Black":"B", " ":"_"}[self.ChessBoard[7-y][x].color] + self.ChessBoard[7-y][x].type + " "
+            print(line)
+
+    def printIDs(self):
+        for y in range(8):
+            line = ""
+            for x in range(8):
+                if len(str(self.ChessBoard[7-y][x].pieceID)) == 2:
+                    line += str(self.ChessBoard[7-y][x].pieceID)
+                if len(str(self.ChessBoard[7-y][x].pieceID)) == 1:
+                    line += "_" + str(self.ChessBoard[7-y][x].pieceID)
+                line += " "
             print(line)
