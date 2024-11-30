@@ -16,12 +16,10 @@ class King(Piece):
                         self.movesList.append((pos[0]+x,pos[1]+y))
         #Checks for invalid moves and removes them from moves list
         self.getAttackedSquares()
-        self.checkToItem = len(self.movesList)
         i = 0
-        while i < self.checkToItem:
+        while i < len(self.movesList):
             if self.movesList[i] in self.squaresUnderAttack:
                 self.movesList.pop(i)
-                self.checkToItem -= 1
             else:
                 i += 1
         #castling
@@ -50,3 +48,22 @@ class King(Piece):
         if (pos in self.squaresUnderAttack):
             return True
         return False
+
+def checkmateDetectionMoves(self,board):
+        pos = self.getPos(board)
+        self.movesList = []
+        #Basic movement
+        for y in range(-1,2,1):
+            for x in range(-1,2,1):
+                if 8 > pos[1]+y > -1 and 8 > pos[0]+x > -1:
+                    if not (x==0 and y == 0):
+                        self.movesList.append((pos[0]+x,pos[1]+y))
+        #Checks for invalid moves and removes them from moves list
+        self.getAttackedSquares()
+        i = 0
+        while i < len(self.movesList):
+            if self.movesList[i] in self.squaresUnderAttack:
+                self.movesList.pop(i)
+            else:
+                i += 1
+        return self.movesList

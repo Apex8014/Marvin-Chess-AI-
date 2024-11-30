@@ -75,6 +75,10 @@ class Board:
                 if i.pieceID == self.ChessBoard[Positions[1][1]][Positions[1][0]].pieceID:
                     i.updateAttackedSquares(self.ChessBoard)
                     i.hasMoved = True
+        #updating the piece
+        self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
+        self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
+        """
         #discovered attacks
         for i in Global.blackPieces:
             i.discoveredAttack(self.ChessBoard, Positions[0])
@@ -85,9 +89,11 @@ class Board:
             i.discoveredAttack(self.ChessBoard, Positions[1])
         for i in Global.whitePieces:
             i.discoveredAttack(self.ChessBoard, Positions[1])
-        #updating the piece
-        self.ChessBoard[Positions[1][1]][Positions[1][0]].hasMoved = True
-        self.ChessBoard[Positions[1][1]][Positions[1][0]].updateAttackedSquares(self.ChessBoard)
+        """
+        for i in Global.blackPieces:
+            i.updateAttackedSquares(self.ChessBoard)
+        for i in Global.whitePieces:
+            i.updateAttackedSquares(self.ChessBoard)
 
     def printBoard(self):
         for y in range(8):

@@ -69,13 +69,10 @@ def positionBetweenPositions(position1, position2, position3):
 def canEscapeCheckmate(color,board):
     #detects if the king is even in check (failsafe plus makes things easier)
     if kings[{"White":0,"Black":1}[color]].inCheck(board):
-        print("In Check")
         #detects if escaping checkmate is possible
         if len(kings[{"White":0,"Black":1}[color]].attackedByPieces(board)) == 1:
-            print("Attacked by one piece")
             #detects if a piece can be taken to prevent checkmate
-            if kings[{"White":0,"Black":1}[color]].attackedByPieces(board)[0].getPos(board) in kings[{"White":1,"Black":0}[color]].getAttackedSquares():
-                print("Can eat piece")
+            if kings[{"White":0,"Black":1}[color]].attackedByPieces(board)[0].getPos(board) in kings[{"White":0,"Black":1}[color]].getAttackedSquares():
                 return True
             #detects if a piece can be moved in the way to prevent checkmate
             for i in kings[{"White":0,"Black":1}[color]].attackedByPieces(board):
@@ -84,23 +81,16 @@ def canEscapeCheckmate(color,board):
                     return False
                 #blocking checkmate from a rook and a queen
                 elif i.type == "R" or (i.type == "Q" and (i.getPos(board)[0] == kings[{"White":0,"Black":1}[color]].getPos(board)[0] or i.getPos(board)[1] == kings[{"White":0,"Black":1}[color]].getPos(board)[1])):
-                    print("Rook/sideways queen")
                     for move in kings[{"White":1,"Black":0}[color]].getAttackedSquares():
-                        print("check for move between")
                         return positionBetweenPositions(i.getPos(board), move, kings[{"White":0,"Black":1}[color]].getPos(board)) == 1
                 #blocking checkmate from a bishop and a queen
                 elif i.type == "B" or (i.type == "Q" and abs(i.getPos(board)[0] - kings[{"White":0,"Black":1}[color]].getPos(board)[0]) == abs(i.getPos(board)[1] - kings[{"White":0,"Black":1}[color]].getPos(board)[1])):
-                    print("Bishop/diagonal queen")
                     for move in kings[{"White":1,"Black":0}[color]].getAttackedSquares():
                         #checks if the move is somewhere in the diagonal
                         if positionBetweenPositions(i.getPos(board), move, kings[{"White":0,"Black":1}[color]].getPos(board)) == 2:
-                            print("Diagonal move")
                             #checks if the move is in the bishop/queen diagonal
                             if abs(move[0]-i.getPos(board)[0]) == abs(move[1]-i.getPos(board)[1]):
-                                print("Can block")
                                 return True
-        print("Cant escape")
         return False
     else:
-        print("Not in check")
         return True

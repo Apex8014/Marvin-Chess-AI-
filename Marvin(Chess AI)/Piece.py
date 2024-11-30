@@ -64,9 +64,11 @@ class Piece:
     
     #updates attacked squares in the case of a possible discovered attack
     def discoveredAttack(self, board, updatePosition):
-        #if not self.type in ["P","K","N"]:
-            if updatePosition in self.attackedSquares:
+        if self.color != board[updatePosition[1]][updatePosition[0]].color:
+            if (updatePosition[0],updatePosition[1]) in self.attackedSquares:
                 self.updateAttackedSquares(board)
+        else:
+            self.updateAttackedSquares(board)
 
     #returns a boolean representing wether or not the king is in check
     def inCheck(self, board):

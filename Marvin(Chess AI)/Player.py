@@ -48,7 +48,6 @@ class Player:
 				continue
 			if self.boardDuplicate.ChessBoard[self.chosenLocationY][self.chosenLocationX].inCheck(self.boardDuplicate.ChessBoard):
 				print("Invalid move: Check")
-				self.boardDuplicate.printBoard()
 				#resets the attacked squares because they are changed when checking for check
 				Global.mostRecentMove = self.mostRecentMove
 				Global.whitePieces = self.whitePieces
@@ -65,7 +64,6 @@ class Player:
 					i.updateAttackedSquares(board)
 				continue
 			#resets the attacked squares because they are changed when checking for check
-			print("Reseting Tests")
 			Global.mostRecentMove = self.mostRecentMove
 			Global.whitePieces = self.whitePieces
 			Global.blackPieces = self.blackPieces
