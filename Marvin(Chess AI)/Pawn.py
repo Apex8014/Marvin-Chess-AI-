@@ -39,12 +39,3 @@ class Pawn(Piece):
             if self.movesList[i][1] == {"White":7,"Black":0}[self.color]:
                 self.movesList[i] = (self.movesList[i][0],self.movesList[i][1],True)
         return self.movesList
-
-    def checkmateDetectionMoves(self,board):
-        pos = self.getPos(board)
-        self.attackedSquares = []
-        if 7 > pos[1] > 0:
-            if pos[0]-1 > -1:
-                self.attackedSquares.append((pos[0]-1, pos[1] + {"White":1,"Black":-1}[self.color]))
-            if pos[0]+1 < 8:
-                self.attackedSquares.append((pos[0]+1, pos[1] + {"White":1,"Black":-1}[self.color]))

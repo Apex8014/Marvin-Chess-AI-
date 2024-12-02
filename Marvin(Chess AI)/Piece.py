@@ -64,10 +64,7 @@ class Piece:
     
     #updates attacked squares in the case of a possible discovered attack
     def discoveredAttack(self, board, updatePosition):
-        if self.color != board[updatePosition[1]][updatePosition[0]].color:
-            if (updatePosition[0],updatePosition[1]) in self.attackedSquares:
-                self.updateAttackedSquares(board)
-        else:
+        if (updatePosition[0],updatePosition[1]) in self.attackedSquares:
             self.updateAttackedSquares(board)
 
     #returns a boolean representing wether or not the king is in check
@@ -79,13 +76,24 @@ class Piece:
     #returns the pieces attacking this piece
     def attackedByPieces(self, board):
         pos = self.getPos(board)
-        returnVal = 0
-        if self.color != "White":
+        returnVal = []
+        if self.color == "White":
             for i in Global.blackPieces:
                 if pos in i.attackedSquares:
                     returnVal.append(i)
-        if self.color != "Black":
+        if self.color == "Black":
             for i in Global.whitePieces:
                 if pos in i.attackedSquares:
                     returnVal.append(i)
-        return i
+        return returnVal
+    
+    #Filters out the moves that involve taking your own piece
+    def filterValidMoves(self,board):
+        unfilteredMoves = self.validMoves(board)
+        i = 0
+        while i < len(unfilteredMoves):
+            if board[unfilteredMoves[i][1]][unfilteredMoves[i][0]].color == self.color:
+                unfilteredMoves.pop(i)
+            else:
+                i+=1
+        return unfilteredMoves

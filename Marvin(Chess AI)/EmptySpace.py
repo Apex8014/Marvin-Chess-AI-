@@ -7,6 +7,3 @@ class EmptySpace(Piece):
 
     def validMoves(self,board):
         return []
-    
-    def checkmateDetectionMoves(self,board):
-        return []
