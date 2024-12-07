@@ -6,6 +6,7 @@ from Rook import Rook
 from Queen import Queen
 from King import King
 import Global
+import random
 import copy
 
 class Board:
@@ -33,7 +34,7 @@ class Board:
         for i in range(2):
             Global.kings[i].updateAttackedSquares(self.ChessBoard)
 
-    def updatePosition(self,Positions):
+    def updatePosition(self,Positions,player):
         self.pieceToBeMoved = self.ChessBoard[Positions[0][1]][Positions[0][0]]
         self.pieceToBeMovedID = self.pieceToBeMoved.pieceID
         self.ChessBoard[Positions[1][1]][Positions[1][0]].removeFromPieces()
@@ -46,9 +47,12 @@ class Board:
             if (self.ChessBoard[Positions[1][1]][Positions[1][0]].type == "P"):
                 #Promotion
                 if (Positions[1][2] == True):
-                    self.promotionPiece = input("What piece would you like to promote to?:").lower()
-                    while self.promotionPiece not in ["knight","bishop","rook","queen"]:
-                        self.promotionPiece = input("Invalid response; enter full name of piece. What piece would you like to promote to?:").lower()
+                    if player == "h":
+                        self.promotionPiece = input("What piece would you like to promote to?:").lower()
+                        while self.promotionPiece not in ["knight","bishop","rook","queen"]:
+                            self.promotionPiece = input("Invalid response; enter full name of piece. What piece would you like to promote to?:").lower()
+                    else:
+                        self.promotionPiece = ["knight","bishop","rook","queen"][random.randint(0,3)]
                     self.ChessBoard[Positions[1][1]][Positions[1][0]].removeFromPieces()
                     self.ChessBoard[Positions[1][1]][Positions[1][0]] = copy.deepcopy(self.promotions[self.promotionPiece][self.ChessBoard[Positions[1][1]][Positions[1][0]].color])
                     self.ChessBoard[Positions[1][1]][Positions[1][0]].pieceID = self.pieceToBeMovedID
@@ -60,10 +64,11 @@ class Board:
                         Global.blackPieces[len(Global.blackPieces)-1].pieceID = self.pieceToBeMovedID
                 #En pessant
                 if (Positions[1][2] == False):
+                    self.ChessBoard[Positions[0][1]][Positions[1][0]].removeFromPieces()
                     self.ChessBoard[Positions[0][1]][Positions[1][0]] = EmptySpace()
             #Castling
             if (self.ChessBoard[Positions[1][1]][Positions[1][0]].type == "K"):
-                self.updatePosition( ( ( {6:7,2:0}[Positions[1][0]] , Positions[1][1] ), ( {6:5,2:3}[Positions[1][0]] , Positions[1][1]) ) )
+                self.updatePosition( ( ( {6:7,2:0}[Positions[1][0]] , Positions[1][1] ), ( {6:5,2:3}[Positions[1][0]] , Positions[1][1]) ) ,player)
         #updating the piece in the global list
         if self.ChessBoard[Positions[1][1]][Positions[1][0]].color == "White":
             for i in Global.whitePieces:

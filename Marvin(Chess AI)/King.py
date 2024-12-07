@@ -1,4 +1,5 @@
 from Piece import Piece
+import Global
 
 class King(Piece):
     def __init__(self,color):
@@ -18,7 +19,7 @@ class King(Piece):
         self.getAttackedSquares()
         i = 0
         while i < len(self.movesList):
-            if self.movesList[i] in self.squaresUnderAttack:
+            if self.movesList[i] in self.squaresUnderAttack or self.movesList[i] in Global.kings[{"White":1,"Black":0}[self.color]].kingBoundries(board):
                 self.movesList.pop(i)
             else:
                 i += 1
@@ -40,6 +41,17 @@ class King(Piece):
                     #The true is here to show that a special move (castling in this case) is ocuring in this move
                     self.movesList.append((2,pos[1],True))
         return self.movesList
+    
+    def kingBoundries(self,board):
+        pos = self.getPos(board)
+        self.boundries = []
+        #Basic movement
+        for y in range(-1,2,1):
+            for x in range(-1,2,1):
+                if 8 > pos[1]+y > -1 and 8 > pos[0]+x > -1:
+                    if not (x==0 and y == 0):
+                        self.boundries.append((pos[0]+x,pos[1]+y))  
+        return self.boundries
 
     #detects if the king is in check
     def inCheck(self, board):

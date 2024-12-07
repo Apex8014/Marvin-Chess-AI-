@@ -90,5 +90,4 @@ class Queen(Piece):
                         down = False
                 else:
                     down = False
-
         return self.movesList

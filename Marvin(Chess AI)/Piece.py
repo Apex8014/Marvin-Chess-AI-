@@ -88,11 +88,12 @@ class Piece:
         return returnVal
     
     #Filters out the moves that involve taking your own piece
-    def filterValidMoves(self,board):
+    def filterValidMoves(self,board,boardClass,player):
         unfilteredMoves = self.validMoves(board)
         i = 0
+        kingPosition = self.getPos(board)
         while i < len(unfilteredMoves):
-            if board[unfilteredMoves[i][1]][unfilteredMoves[i][0]].color == self.color:
+            if board[unfilteredMoves[i][1]][unfilteredMoves[i][0]].color == self.color or not Global.testMove(kingPosition[0],kingPosition[1],unfilteredMoves[i][0],unfilteredMoves[i][1],board,boardClass,self.color,player,False):
                 unfilteredMoves.pop(i)
             else:
                 i+=1
