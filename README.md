@@ -8,3 +8,5 @@ The code is commented throughout, which should give a good understanding of how 
 If you have suggestions, feel free to leave them in the discusions tab so we can consider them.
 
 A more complete README file will be finished when the project is finished, but I figure that while this project is unfinished there isn't much of a point to it now.
+
+Marvin Chess AI © 2024 by Asher Prince is licensed under CC BY-NC-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
