@@ -26,8 +26,6 @@ class Game():
             print("Black")
             self.gameBoard.printBoard()
             print("White")
-            print("failsafe board")
-            self.gameBoard.printBoard()
             self.gameBoard.updatePosition(self.WhitePlayer.getMove(self.gameBoard.ChessBoard,self.gameBoard),self.playerOne)
             #if the king is in check and doesn't have any valid moves, checkmate (Does not currently account for moving a piece to prevent check/checkmate)
             if Global.inStalemate(self.gameBoard.ChessBoard, "Black",self.gameBoard,self.playerOne):
@@ -42,8 +40,6 @@ class Game():
             print("Black")
             self.gameBoard.printBoard()
             print("White")
-            print("failsafe board")
-            self.gameBoard.printBoard()
             self.gameBoard.updatePosition(self.BlackPlayer.getMove(self.gameBoard.ChessBoard,self.gameBoard),self.playerTwo)
             #if it finds the white king, it changes the winner value to "!", if winner is not "!", then the king is gone and therefore black wins
             if Global.inStalemate(self.gameBoard.ChessBoard, "White",self.gameBoard,self.playerTwo):

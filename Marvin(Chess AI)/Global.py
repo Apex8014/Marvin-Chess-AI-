@@ -137,43 +137,30 @@ def testMove(chosenPieceX, chosenPieceY, chosenLocationX, chosenLocationY, board
 def canEscapeCheckmate(color,board,boardClass,player):
     #detects if the king is even in check (failsafe plus makes things easier)
     if kings[{"White":0,"Black":1}[color]].inCheck(board):
-        print("In check")
         #detects if the king can move
         if len(kings[{"White":0,"Black":1}[color]].filterValidMoves(board,boardClass,player)) == 0:
-            print("Can not move")
             #detects if escaping checkmate is possible
             if len(kings[{"White":0,"Black":1}[color]].attackedByPieces(board)) == 1:
-                print("escape is possible")
                 #detects if a piece can be taken to prevent checkmate
                 if len(kings[{"White":0,"Black":1}[color]].attackedByPieces(board)[0].attackedByPieces(board)) > 0 :
-                    print("can be taken")
                     return True
                 #detects if a piece can be moved in the way to prevent checkmate
                 for i in kings[{"White":0,"Black":1}[color]].attackedByPieces(board):
-                    print("Can be blocked")
                     #you can't block checkmate from a knight or pawn
                     if i.type == "N" or i.type == "P":
-                        print("cant block knight or pawn")
                         return False
                     #blocking checkmate from a rook and a queen
                     elif i.type == "R" or (i.type == "Q" and (i.getPos(board)[0] == kings[{"White":0,"Black":1}[color]].getPos(board)[0] or i.getPos(board)[1] == kings[{"White":0,"Black":1}[color]].getPos(board)[1])):
-                        print("rook or queen")
                         testList = {"White": whitePieces, "Black":blackPieces}
                         for piece in testList[color]:
                             if piece.type == "K":
                                 continue
-                            print(piece.type)
                             for move in piece.validMoves(board):
-                                print(i.getPos(board))
-                                print(move)
-                                print(kings[{"White":0,"Black":1}[color]].getPos(board))
-                                print(positionBetweenPositions(i.getPos(board), move, kings[{"White":0,"Black":1}[color]].getPos(board)))
                                 if positionBetweenPositions(i.getPos(board), move, kings[{"White":0,"Black":1}[color]].getPos(board)) == 1:
                                     if piece.getPos(board)[0] == i.getPos(board)[0] or piece.getPos(board)[1] == i.getPos(board)[0]:
                                         return True
                     #blocking checkmate from a bishop and a queen
                     elif i.type == "B" or (i.type == "Q" and abs(i.getPos(board)[0] - kings[{"White":0,"Black":1}[color]].getPos(board)[0]) == abs(i.getPos(board)[1] - kings[{"White":0,"Black":1}[color]].getPos(board)[1])):
-                        print("bishop or queen")
                         testList = {"White": whitePieces, "Black":blackPieces}
                         for piece in testList[color]:
                             if piece.type == "K":
