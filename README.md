@@ -9,4 +9,4 @@ If you have suggestions, feel free to leave them in the discusions tab so we can
 
 A more complete README file will be finished when the project is finished, but I figure that while this project is unfinished there isn't much of a point to it now.
 
-Marvin Chess AI and Titanium Chess Engine © 2024 by Asher Prince is licensed under CC BY-NC-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
+Marvin Chess AI © 2024 by Asher Prince and Titanium Chess Engine © 2024 by Asher Prince and Evan O'Keefe is licensed under CC BY-NC-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
